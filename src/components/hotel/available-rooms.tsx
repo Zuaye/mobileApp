@@ -81,6 +81,10 @@ export function AvailableRooms() {
     router.push("/rooms");
   };
 
+  const handleRoomClick = (roomId: string) => {
+    router.push(`/rooms/${roomId}`);
+  };
+
   return (
     <div className="relative">
       <motion.div
@@ -94,8 +98,9 @@ export function AvailableRooms() {
             key={room.id}
             variants={itemVariants}
             className="flex-none w-[280px] snap-center"
+            onClick={() => handleRoomClick(room.id)}
           >
-            <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div className="relative h-36">
                 <img
                   src={room.image}

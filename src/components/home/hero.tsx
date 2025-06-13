@@ -37,18 +37,6 @@ export function Hero() {
 
           <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center gap-4">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <Button
-                size="lg"
-                className="w-full sm:w-auto px-8 py-3 text-base font-medium"
-              >
-                Réserver maintenant
-              </Button>
-            </motion.div>
-            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -58,7 +46,7 @@ export function Hero() {
                 size="lg"
                 className="mt-3 sm:mt-0 w-full sm:w-auto px-8 py-3 text-base font-medium bg-white/10 hover:bg-white/20 text-white border-white/30"
               >
-                En savoir plus
+                Rechercher
               </Button>
             </motion.div>
           </div>
