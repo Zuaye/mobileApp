@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Bell, Menu } from "lucide-react";
+import { Bell } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 
 export function AppHeader() {

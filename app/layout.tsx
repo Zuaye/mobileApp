@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/src/components/theme-provider";
-import { Toaster } from "@/src/components/ui/sonner";
-import { MobileNav } from "@/src/components/navigation/mobile-nav";
 import { OnboardingProvider } from "@/src/components/providers/onboarding-provider";
 import { cn } from "@/src/lib/utils";
-import { AppHeader } from "@/src/components/navigation/app-header";
+import { Toaster } from "@/src/components/ui/sonner";
+import { Template } from "@/src/components/Template";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,10 +43,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <OnboardingProvider>
-            <AppHeader />
-            <main className="pb-16 md:pb-0">{children}</main>
-            <MobileNav />
-            <Toaster />
+            <Toaster position="top-right" richColors />
+            <Template>{children}</Template>
           </OnboardingProvider>
         </ThemeProvider>
       </body>

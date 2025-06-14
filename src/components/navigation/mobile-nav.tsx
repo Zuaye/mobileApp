@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, Search, MapPin, Heart, User } from "lucide-react";
+import { Home, Search, Heart, User, MessageCircle } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 
 const navItems = [
@@ -21,6 +21,11 @@ const navItems = [
     name: "Favoris",
     href: "/favorites",
     icon: Heart,
+  },
+  {
+    name: "Message",
+    href: "/messages",
+    icon: MessageCircle,
   },
   {
     name: "Profil",

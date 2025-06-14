@@ -20,9 +20,7 @@ export function OnboardingProvider({
 
   useEffect(() => {
     // Vérifie si l'onboarding a déjà été complété
-    const onboardingCompleted = localStorage.getItem(
-      "zuaye_onboarding_completed"
-    );
+    const onboardingCompleted = localStorage.getItem("zuaye_onboarding");
     if (onboardingCompleted === "true") {
       setShowOnboarding(false);
       setIsOnboardingComplete(true);

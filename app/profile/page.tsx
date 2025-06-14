@@ -11,6 +11,7 @@ import {
   Settings,
   User,
 } from "lucide-react";
+import Link from "next/link";
 
 const menuItems = [
   {
@@ -31,7 +32,7 @@ const menuItems = [
   {
     icon: Settings,
     label: "Paramètres",
-    href: "/profile/settings",
+    href: "/settings",
   },
   {
     icon: HelpCircle,
@@ -42,7 +43,7 @@ const menuItems = [
 
 export default function ProfilePage() {
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen p-4 mt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,13 +71,15 @@ export default function ProfilePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Button
-                variant="ghost"
-                className="w-full justify-start text-base font-normal h-12"
-              >
-                <item.icon className="w-5 h-5 mr-3" />
-                {item.label}
-              </Button>
+              <Link href={item.href}>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-base font-normal h-12"
+                >
+                  <item.icon className="w-5 h-5 mr-3" />
+                  {item.label}
+                </Button>
+              </Link>
             </motion.div>
           ))}
         </div>

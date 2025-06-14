@@ -14,7 +14,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onAnimationComplete={onComplete}
-      className="fixed inset-0 flex flex-col items-center justify-center bg-primary text-white"
+      className="fixed inset-0 flex min-h-screen flex-col items-center justify-center bg-primary text-white"
     >
       <div className="relative flex flex-col items-center">
         {/* Logo animation */}

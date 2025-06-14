@@ -1,49 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardFooter } from "@/src/components/ui/card";
-import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
-import { Clock, Bed, Users } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-// Types
-interface Womens {
-  id: string;
-  name: string;
-  localisation: string;
-  price: number;
-  image: string;
-  statut: string;
-}
-
-// Données de test
-const AVAILABLE_WOMENS: Womens[] = [
-  {
-    id: "1",
-    name: "Jessica Moke",
-    price: 15000,
-    image: "/images/rooms/room-1.jpg",
-    statut: "Maintenant",
-    localisation: "Bandal",
-  },
-  {
-    id: "2",
-    name: "Deborah Mande",
-    price: 12000,
-    image: "/images/rooms/room-2.jpg",
-    statut: "Dans 30min",
-    localisation: "Lingwala",
-  },
-  {
-    id: "3",
-    name: "Eunice Yenga",
-    price: 18000,
-    image: "/images/rooms/room-3.jpg",
-    statut: "Dans 1h",
-    localisation: "Gombe",
-  },
-];
+import { AVAILABLE_WOMENS } from "@/src/lib/usersData/women-profile";
+import { cn } from "@/src/lib/utils";
+import { ProfileCard } from "./women-card";
 
 export function AvailableWomens() {
   const router = useRouter();
@@ -52,108 +15,81 @@ export function AvailableWomens() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: 20 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-      },
+      y: 0,
+      transition: { duration: 0.5 },
     },
   };
 
-  const handleSeeAll = () => {
-    router.push("/rooms");
-  };
-
-  const handleRoomClick = (roomId: string) => {
-    router.push(`/rooms/${roomId}`);
-  };
+  const handleSeeAll = () => router.push("/women");
+  const handleProfileClick = (profileId: string) =>
+    router.push(`/women/${profileId}`);
 
   return (
-    <section className="w-full mt-8 px-4 mb-8 bg-primary py-5">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-50">
-            Filles de chambres Disponibles
-          </h2>
-          <p className="text-sm  text-slate-200">
-            Optez pour une fille propre et contactez-la
-          </p>
+    <section className="w-full py-8 px-4 md:px-6 bg-background">
+      {/* En-tête de la section */}
+      <div className="max-w-7xl md:mx-auto mb-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between">
+          <div className="space-y-1">
+            <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
+              Filles de chambres
+            </h2>
+            <p className="text-muted-foreground">
+              Trouvez un partenaire pour un moment de plaisir
+            </p>
+          </div>
+
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 hover:bg-primary/10 mt-5"
+            onClick={handleSeeAll}
+          >
+            Voir tous les profils
+            <ChevronRight className="w-4 h-4" />
+          </Button>
         </div>
       </div>
-      <div className="relative">
+
+      {/* Conteneur des cartes avec défilement horizontal */}
+      <div className="relative max-w-7xl mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory hide-scrollbar"
+          className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar"
         >
-          {AVAILABLE_WOMENS.map((room) => (
+          {AVAILABLE_WOMENS.map((profile) => (
             <motion.div
-              key={room.id}
+              key={profile.id}
               variants={itemVariants}
-              className="flex-none w-[280px] snap-center"
-              onClick={() => handleRoomClick(room.id)}
+              className="flex-none snap-center first:pl-4 last:pr-4"
             >
-              <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                <div className="relative h-20">
-                  <img
-                    src={room.image}
-                    alt={room.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-2 right-2">
-                    <Badge variant="secondary" className="bg-white/90">
-                      {room.statut}
-                    </Badge>
-                  </div>
-                </div>
-                <CardContent className="p-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-semibold text-base line-clamp-1">
-                      {room.localisation}
-                    </h3>
-                    <span className="text-sm font-medium text-primary">
-                      {room.price.toLocaleString()} FC/2h
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mb-3 line-clamp-1">
-                    {room.name}
-                  </p>
-                </CardContent>
-                <CardFooter className="p-3 pt-0">
-                  <Button size="sm" className="w-full">
-                    contactez maintenant
-                  </Button>
-                </CardFooter>
-              </Card>
+              <ProfileCard
+                profile={profile}
+                onProfileClick={handleProfileClick}
+              />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Indicateur de défilement et bouton Voir tout */}
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex gap-1">
-            {AVAILABLE_WOMENS.map((_, index) => (
-              <div key={index} className="w-1 h-1 rounded-full bg-primary/20" />
-            ))}
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-slate-50 font-medium hover:text-primary/80"
-            onClick={handleSeeAll}
-          >
-            Voir toutes les filles
-          </Button>
+        {/* Indicateurs de navigation mobile */}
+        <div className="md:hidden flex justify-center gap-2 mt-4">
+          {AVAILABLE_WOMENS.map((_, index) => (
+            <div
+              key={index}
+              className={cn(
+                "w-2 h-2 rounded-full transition-colors",
+                index === 0 ? "bg-primary" : "bg-primary/20"
+              )}
+            />
+          ))}
         </div>
       </div>
     </section>

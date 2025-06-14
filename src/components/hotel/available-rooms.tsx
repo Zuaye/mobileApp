@@ -6,52 +6,7 @@ import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Clock, Bed, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-// Types
-interface Room {
-  id: string;
-  hotelName: string;
-  type: string;
-  price: number;
-  image: string;
-  capacity: number;
-  availableFrom: string;
-  duration: number;
-}
-
-// Données de test
-const AVAILABLE_ROOMS: Room[] = [
-  {
-    id: "1",
-    hotelName: "Hôtel Le Luxe",
-    type: "Suite Junior",
-    price: 15000,
-    image: "/images/rooms/room-1.jpg",
-    capacity: 2,
-    availableFrom: "Maintenant",
-    duration: 3,
-  },
-  {
-    id: "2",
-    hotelName: "Confort Plus",
-    type: "Chambre Deluxe",
-    price: 12000,
-    image: "/images/rooms/room-2.jpg",
-    capacity: 2,
-    availableFrom: "Dans 30min",
-    duration: 2,
-  },
-  {
-    id: "3",
-    hotelName: "Le Petit Palace",
-    type: "Suite Executive",
-    price: 18000,
-    image: "/images/rooms/room-3.jpg",
-    capacity: 2,
-    availableFrom: "Dans 1h",
-    duration: 4,
-  },
-];
+import { AVAILABLE_ROOMS } from "@/src/lib/usersData/hotelData";
 
 export function AvailableRooms() {
   const router = useRouter();
@@ -86,7 +41,7 @@ export function AvailableRooms() {
   };
 
   return (
-    <section className="w-full mt-24 px-4 mb-8">
+    <section className="w-full mt-10 px-4 mb-8">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-2xl font-bold">Chambres Disponibles</h2>
