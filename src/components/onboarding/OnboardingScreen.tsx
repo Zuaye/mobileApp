@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { OnboardingSlide } from "./OnboardingSlide";
 import type { OnboardingProps } from "./types";
 
@@ -9,29 +8,33 @@ const slides = [
   {
     id: 1,
     title: "Réservation Instantanée",
-    description: "Trouvez et réservez la chambre parfaite en quelques clics, 24h/24 et 7j/7.",
-    image: "/onboarding/instant-booking.jpg",
+    description:
+      "Trouvez et réservez la chambre parfaite en quelques clics, 24h/24 et 7j/7.",
+    image: "/images/onboarding/jeune-couple1.png",
     buttonText: "Suivant",
   },
   {
     id: 2,
-    title: "Paiement Sécurisé",
-    description: "Effectuez vos paiements en toute sécurité avec nos systèmes de paiement cryptés.",
-    image: "/onboarding/secure-payment.jpg",
+    title: "Confort Premium",
+    description:
+      "Profitez d'un séjour confortable dans nos hôtels soigneusement sélectionnés.",
+    image: "/images/onboarding/chambre.png",
     buttonText: "Suivant",
   },
   {
     id: 3,
-    title: "Confort Premium",
-    description: "Profitez d'un séjour confortable dans nos hôtels soigneusement sélectionnés.",
-    image: "/onboarding/comfort.jpg",
+    title: "Nos filles",
+    description:
+      "Profitez de nos filles de chambres disponibles issues de plusieurs communes pour vous faire plaisir.",
+    image: "/images/onboarding/women.jpg",
     buttonText: "Suivant",
   },
   {
     id: 4,
-    title: "Service Client 24/7",
-    description: "Notre équipe est disponible à tout moment pour vous assister pendant votre séjour.",
-    image: "/onboarding/support.jpg",
+    title: "Recherche rapide",
+    description:
+      "Faites vos recherches de meilleurs hotels à Kinshasa ave des prix competitifs",
+    image: "/images/onboarding/kinshasa.jpg",
     buttonText: "Commencer",
     isLast: true,
   },

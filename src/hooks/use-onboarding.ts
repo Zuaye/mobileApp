@@ -16,12 +16,12 @@ export function useOnboardingStatus() {
   }, []);
 
   const completeOnboarding = () => {
-    localStorage.setItem("zuaye_onboarding_completed", "true");
+    localStorage.setItem("zuaye_onboarding", "true");
     setHasCompletedOnboarding(true);
   };
 
   const resetOnboarding = () => {
-    localStorage.removeItem("zuaye_onboarding_completed");
+    localStorage.removeItem("zuaye_onboarding");
     setHasCompletedOnboarding(false);
   };
 

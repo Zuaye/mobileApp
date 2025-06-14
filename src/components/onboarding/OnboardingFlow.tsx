@@ -9,19 +9,21 @@ interface OnboardingFlowProps {
 }
 
 export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
-  const [currentStep, setCurrentStep] = useState<"splash" | "onboarding">("splash");
+  const [currentStep, setCurrentStep] = useState<"splash" | "onboarding">(
+    "splash"
+  );
 
   const handleSplashComplete = () => {
     setCurrentStep("onboarding");
   };
 
   const handleOnboardingComplete = () => {
-    localStorage.setItem("zuaye_onboarding_completed", "true");
+    localStorage.setItem("zuaye_onboarding", "true");
     onComplete();
   };
 
   const handleSkip = () => {
-    localStorage.setItem("zuaye_onboarding_completed", "true");
+    localStorage.setItem("zuaye_onboarding", "true");
     onComplete();
   };
 

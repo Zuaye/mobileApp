@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { OnboardingSlideProps } from "./types";
 import { Button } from "../ui/button";
-import { ChevronRight, Users, Briefcase, Star } from "lucide-react";
+import { ChevronRight, Users, Briefcase, Star, Search } from "lucide-react";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -31,13 +31,13 @@ const slideVariants = {
 const getIcon = (slideId: number) => {
   switch (slideId) {
     case 1:
-      return <Users className="w-6 h-6 text-blue-400" />;
+      return <Users className="w-6 h-6 text-primary" />;
     case 2:
-      return <Briefcase className="w-6 h-6 text-blue-400" />;
+      return <Briefcase className="w-6 h-6 text-primary" />;
     case 3:
-      return <Star className="w-6 h-6 text-blue-400" />;
+      return <Star className="w-6 h-6 text-primary" />;
     default:
-      return null;
+      return <Search className="w-6 h-6 text-primary" />;
   }
 };
 
@@ -76,7 +76,7 @@ export function OnboardingSlide({
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/95" />
-        <div className="absolute inset-0 backdrop-blur-[2px]" />
+        {/* <div className="absolute inset-0 backdrop-blur-[1px]" /> */}
       </div>
 
       {/* Content */}
@@ -137,7 +137,7 @@ export function OnboardingSlide({
               key={index}
               className={`h-1 sm:h-1.5 rounded-full transition-all duration-500 ease-out ${
                 index === currentIndex
-                  ? "w-8 sm:w-12 bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg shadow-blue-400/50"
+                  ? "w-8 sm:w-12 bg-gradient-to-r from-orange-400 to-yellow-500 shadow-lg shadow-blue-400/50"
                   : "w-1 sm:w-1.5 bg-white/40 hover:bg-white/60"
               }`}
             />
@@ -153,7 +153,7 @@ export function OnboardingSlide({
         >
           <Button
             onClick={onNext}
-            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:scale-[1.02] transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-base text-white font-semibold shadow-xl shadow-blue-500/25 group border-0 backdrop-blur-sm"
+            className="bg-gradient-to-r from-orange-500 to-yellow-600 hover:from-orange-600 hover:to-yellow-700 hover:scale-[1.02] transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-base text-white font-semibold shadow-xl shadow-primary/25 group border-0 backdrop-blur-sm"
           >
             {slide.buttonText}
             <ChevronRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
