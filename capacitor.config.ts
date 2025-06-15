@@ -6,9 +6,15 @@ const config: CapacitorConfig = {
   webDir: "out",
   bundledWebRuntime: false,
   server: {
+    url: "https://zuaye.vercel.app",
     androidScheme: "https",
     cleartext: true,
-    allowNavigation: ["*"],
+    allowNavigation: [
+      "https://zuaye.vercel.app/*",
+      "capacitor://*",
+      "http://*",
+      "https://*",
+    ],
   },
   android: {
     allowMixedContent: true,

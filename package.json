@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cap:init": "npm run static && npx cap init",
     "cap:add:android": "npx cap add android",
     "cap:add:ios": "npx cap add ios",
     "cap:open:android": "npx cap open android",
