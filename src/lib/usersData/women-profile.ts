@@ -22,7 +22,7 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
   {
     id: "1",
     name: "Jessica Moke",
-    age: 23,
+    age: 26,
     description:
       "Je suis une jeune femme dynamique et sociable. J'aime les moments de partage et de convivialité. Je suis disponible pour des moments agréables et discrets.",
     price: 15000,
@@ -67,7 +67,7 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
   {
     id: "3",
     name: "Eunice Yenga",
-    age: 24,
+    age: 30,
     description:
       "Charmante et attentionnée, je vous propose des moments de détente et de plaisir. Je suis une personne douce et à l'écoute, qui saura vous mettre à l'aise.",
     price: 18000,
