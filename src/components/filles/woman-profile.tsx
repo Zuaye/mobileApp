@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   Heart,
   Share2,
@@ -10,26 +11,15 @@ import {
   Star,
   Clock,
   ChevronLeft,
+  ChevronRight,
   MessageCircle,
   Instagram,
   Phone,
-  Image as ImageIcon,
-  PlayCircle,
   Library,
 } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { Badge } from "@/src/components/ui/badge";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/src/components/ui/tabs";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/src/components/ui/dialog";
+import { cn } from "@/src/lib/utils";
 
 interface WomanProfileProps {
   profile: {
@@ -53,12 +43,22 @@ interface WomanProfileProps {
 
 export function WomanProfile({ profile }: WomanProfileProps) {
   const router = useRouter();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
+  const nextImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % profile.images.length);
+  };
+
+  const prevImage = () => {
+    setActiveImageIndex(
+      (prev) => (prev - 1 + profile.images.length) % profile.images.length
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 mt-16">
-      {/* Header avec image principale */}
+    <div className="bg-slate-50 dark:bg-slate-900 mt-16">
+      {/* Image carousel */}
       <div className="relative h-[70vh] md:h-[60vh]">
         <Button
           variant="ghost"
@@ -82,26 +82,83 @@ export function WomanProfile({ profile }: WomanProfileProps) {
           </Button>
         </div>
 
-        <motion.img
-          key={currentImageIndex}
-          src={profile.images[currentImageIndex]}
-          alt={profile.name}
-          className="w-full h-full object-cover"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeImageIndex}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={profile.images[activeImageIndex]}
+              alt={`${profile.name} - Image ${activeImageIndex + 1}`}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Indicateurs de navigation des photos */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
+        {/* Navigation arrows */}
+        <button
+          onClick={prevImage}
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white p-2 sm:p-3 rounded-full transition-all duration-300 border border-white/20"
+        >
+          <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
+        </button>
+        <button
+          onClick={nextImage}
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white p-2 sm:p-3 rounded-full transition-all duration-300 border border-white/20"
+        >
+          <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
+        </button>
+
+        {/* Image indicators */}
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-1 sm:gap-2 z-10">
           {profile.images.map((_, index) => (
             <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === currentImageIndex ? "bg-white w-4" : "bg-white/50"
-              }`}
-              onClick={() => setCurrentImageIndex(index)}
+              onClick={() => setActiveImageIndex(index)}
+              className={cn(
+                "h-1 sm:h-1.5 rounded-full transition-all duration-300",
+                activeImageIndex === index
+                  ? "w-6 sm:w-8 bg-primary"
+                  : "w-3 sm:w-4 bg-white/50 hover:bg-white/70"
+              )}
             />
+          ))}
+        </div>
+      </div>
+
+      {/* Thumbnails */}
+      <div className="container mx-auto px-4 -mt-6 relative z-10">
+        <div className="bg-white/10 dark:bg-black/20 backdrop-blur-lg rounded-xl p-3 flex gap-2 overflow-x-auto hide-scrollbar">
+          {profile.images.map((image, index) => (
+            <motion.button
+              key={index}
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveImageIndex(index)}
+              className={cn(
+                "relative h-12 w-16 sm:h-16 sm:w-24 flex-shrink-0 rounded-lg overflow-hidden transition-all duration-300",
+                activeImageIndex === index
+                  ? "ring-2 ring-primary -translate-y-2"
+                  : "ring-1 ring-white/20 hover:-translate-y-1"
+              )}
+            >
+              <Image
+                src={image}
+                alt={`Miniature ${index + 1}`}
+                fill
+                className="object-cover"
+              />
+              {activeImageIndex === index && (
+                <div className="absolute inset-0 bg-primary/20" />
+              )}
+            </motion.button>
           ))}
         </div>
       </div>
@@ -147,62 +204,6 @@ export function WomanProfile({ profile }: WomanProfileProps) {
           </p>
         </div>
 
-        {/* Tabs pour Photos et Vidéos */}
-        <Tabs defaultValue="photos" className="w-full">
-          <TabsList className="w-full">
-            <TabsTrigger value="photos" className="flex-1">
-              <ImageIcon className="w-4 h-4 mr-2" />
-              Photos
-            </TabsTrigger>
-            <TabsTrigger value="videos" className="flex-1">
-              <PlayCircle className="w-4 h-4 mr-2" />
-              Vidéos
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="photos" className="mt-4">
-            <div className="grid grid-cols-3 gap-1">
-              {profile.images.map((image, index) => (
-                <Dialog key={index}>
-                  <DialogTrigger>
-                    <div className="aspect-square overflow-hidden rounded-lg">
-                      <img
-                        src={image}
-                        alt={`${profile.name} ${index + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform"
-                      />
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-full sm:max-w-[90vw] h-[90vh] p-0">
-                    <img
-                      src={image}
-                      alt={`${profile.name} ${index + 1}`}
-                      className="w-full h-full object-contain"
-                    />
-                  </DialogContent>
-                </Dialog>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="videos" className="mt-4">
-            <div className="grid grid-cols-2 gap-2">
-              {profile.videos.map((video, index) => (
-                <div
-                  key={index}
-                  className="aspect-video rounded-lg overflow-hidden"
-                >
-                  <video
-                    src={video}
-                    controls
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
-
         {/* Services */}
         <div className="bg-white dark:bg-slate-800 rounded-lg p-4">
           <h2 className="font-semibold mb-3">Services</h2>
@@ -228,7 +229,7 @@ export function WomanProfile({ profile }: WomanProfileProps) {
       </div>
 
       {/* Boutons de contact fixes en bas */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-800 border-t dark:border-slate-700 p-4 flex gap-2">
+      <div className="bg-white dark:bg-slate-800 border-t dark:border-slate-700 p-4 flex gap-2 mb-20">
         {profile.instagram && (
           <Button
             variant="outline"

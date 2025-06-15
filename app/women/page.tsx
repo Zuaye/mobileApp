@@ -80,7 +80,7 @@ export default function WomensPages() {
   return (
     <div
       className={cn(
-        "min-h-screen w-full transition-colors duration-300 mt-16",
+        "min-h-screen w-full transition-colors duration-300 my-16",
         isDark
           ? "bg-gradient-to-b from-slate-900 to-slate-800"
           : "bg-gradient-to-b from-slate-50 to-white"

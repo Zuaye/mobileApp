@@ -4,12 +4,19 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/src/components/ui/card";
 import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
-import { Clock, Bed, Users } from "lucide-react";
+import { Clock, Users, Star, MapPin, Bed } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { AVAILABLE_ROOMS } from "@/src/lib/usersData/hotelData";
+import {
+  getAvailableRooms,
+  formatPrice,
+  HOTELS,
+  type Room,
+  type Hotel,
+} from "@/src/lib/usersData/hotelData";
 
 export function AvailableRooms() {
   const router = useRouter();
+  const availableRooms = getAvailableRooms();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -57,67 +64,83 @@ export function AvailableRooms() {
           animate="visible"
           className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory hide-scrollbar"
         >
-          {AVAILABLE_ROOMS.map((room) => (
-            <motion.div
-              key={room.id}
-              variants={itemVariants}
-              className="flex-none w-[280px] snap-center"
-              onClick={() => handleRoomClick(room.id)}
-            >
-              <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                <div className="relative h-36">
-                  <img
-                    src={room.image}
-                    alt={room.type}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-2 right-2">
-                    <Badge variant="secondary" className="bg-white/90">
-                      {room.availableFrom}
-                    </Badge>
-                  </div>
-                </div>
-                <CardContent className="p-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-semibold text-base line-clamp-1">
-                      {room.type}
-                    </h3>
-                    <span className="text-sm font-medium text-primary">
-                      {room.price.toLocaleString()} FCFA
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mb-3 line-clamp-1">
-                    {room.hotelName}
-                  </p>
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {room.duration}h
+          {availableRooms.map((room: Room) => {
+            const hotel = HOTELS.find((h: Hotel) => h.rooms.includes(room));
+            if (!hotel) return null;
+
+            return (
+              <motion.div
+                key={room.id}
+                variants={itemVariants}
+                className="flex-none w-[300px] snap-center"
+                onClick={() => handleRoomClick(room.id)}
+              >
+                <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                  <div className="relative h-40">
+                    <img
+                      src={room.images[0]}
+                      alt={room.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2">
+                      <Badge variant="secondary" className="bg-white/90">
+                        {room.availableFrom}
+                      </Badge>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Bed className="w-3 h-3" />
-                      {room.type}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 h-3" />
-                      {room.capacity}
+                    <div className="absolute bottom-2 left-2">
+                      <Badge className="bg-primary/90">
+                        {formatPrice(room.price)}
+                      </Badge>
                     </div>
                   </div>
-                </CardContent>
-                <CardFooter className="p-3 pt-0">
-                  <Button size="sm" className="w-full">
-                    Réserver maintenant
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-semibold text-base line-clamp-1">
+                        {room.title}
+                      </h3>
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                        <span className="text-sm font-medium">
+                          {room.rating}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center text-xs text-muted-foreground mb-2">
+                      <MapPin className="w-3 h-3 mr-1" />
+                      <span className="line-clamp-1">
+                        {hotel.name} - {hotel.location.quartier}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {room.duration}h
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Bed className="w-3 h-3" />
+                        {room.type}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-3 h-3" />
+                        {room.capacity}
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-3 pt-0">
+                    <Button size="sm" className="w-full">
+                      Réserver maintenant
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Indicateur de défilement et bouton Voir tout */}
         <div className="flex items-center justify-between mt-4">
           <div className="flex gap-1">
-            {AVAILABLE_ROOMS.map((_, index) => (
+            {availableRooms.map((_, index) => (
               <div key={index} className="w-1 h-1 rounded-full bg-primary/20" />
             ))}
           </div>

@@ -22,6 +22,9 @@ import {
   Tv,
   ArrowLeft,
   Star,
+  Wind,
+  Wine,
+  Lock,
 } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { Badge } from "@/src/components/ui/badge";
@@ -31,7 +34,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/src/components/ui/tabs";
-import { getAllRooms, formatPrice, HOTELS } from "@/src/lib/utils";
+import {
+  getAllRooms,
+  formatPrice,
+  HOTELS,
+  type Room,
+  type Hotel,
+} from "@/src/lib/usersData/hotelData";
 import { LoaderView } from "@/src/components/Loader/loader-view";
 
 export default function RoomDetail() {
@@ -46,8 +55,8 @@ export default function RoomDetail() {
   // Trouver la chambre et l'hôtel correspondants
   const roomId = params.id as string;
   const allRooms = getAllRooms();
-  const room = allRooms.find((r) => r.id === roomId);
-  const hotel = room ? HOTELS.find((h) => h.rooms.includes(room)) : null;
+  const room = allRooms.find((r: Room) => r.id === roomId);
+  const hotel = room ? HOTELS.find((h: Hotel) => h.rooms.includes(room)) : null;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -105,6 +114,13 @@ export default function RoomDetail() {
       case "tv led 4k":
       case "tv led":
         return <Tv className="h-5 w-5" />;
+      case "climatisation":
+        return <Wind className="h-5 w-5" />;
+      case "mini bar":
+        return <Wine className="h-5 w-5" />;
+      case "coffre-fort":
+        return <Lock className="h-5 w-5" />;
+
       default:
         return <Check className="h-5 w-5" />;
     }
@@ -320,7 +336,10 @@ export default function RoomDetail() {
                   <h3 className="text-xl font-bold mb-4">Équipements</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {room.amenities.map((amenity, index) => (
-                      <div key={index} className="flex items-center gap-2">
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 p-3 rounded-lg bg-white/10 dark:bg-white/5"
+                      >
                         {getAmenityIcon(amenity)}
                         <span>{amenity}</span>
                       </div>

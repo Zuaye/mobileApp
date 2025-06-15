@@ -14,15 +14,14 @@ import {
 } from "@/src/components/ui/select";
 import { Card, CardContent, CardFooter } from "@/src/components/ui/card";
 import { Badge } from "@/src/components/ui/badge";
+import { Clock, Search, Users, Bed, MapPin, Star } from "lucide-react";
 import {
-  Clock,
-  Search,
-  Users,
-  Bed,
-  MapPin,
-  Star,
-} from "lucide-react";
-import { getAllRooms, formatPrice, HOTELS } from "@/src/lib/utils";
+  getAllRooms,
+  formatPrice,
+  HOTELS,
+  type Room,
+  type Hotel,
+} from "@/src/lib/usersData/hotelData";
 
 type PriceRange = "all" | "low" | "medium" | "high";
 
@@ -35,32 +34,35 @@ export default function RoomsPage() {
 
   // Extraire les communes et quartiers uniques
   const communes = Array.from(
-    new Set(HOTELS.map((hotel) => hotel.location.commune))
+    new Set(HOTELS.map((hotel: Hotel) => hotel.location.commune))
   ).sort();
   const quartiers = Array.from(
-    new Set(HOTELS.map((hotel) => hotel.location.quartier))
+    new Set(HOTELS.map((hotel: Hotel) => hotel.location.quartier))
   ).sort();
 
   // Obtenir toutes les chambres
   const allRooms = getAllRooms();
 
   // Filtrer les chambres
-  const filteredRooms = allRooms.filter((room) => {
-    const hotel = HOTELS.find((h) => h.rooms.includes(room));
+  const filteredRooms = allRooms.filter((room: Room) => {
+    const hotel = HOTELS.find((h: Hotel) => h.rooms.includes(room));
     if (!hotel) return false;
 
     const matchesSearch =
       room.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       room.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      hotel.name.toLowerCase().includes(searchTerm.toLowerCase());
+      hotel.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      room.type.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesCommune = selectedCommune
-      ? hotel.location.commune === selectedCommune
-      : true;
+    const matchesCommune =
+      selectedCommune && selectedCommune !== "all"
+        ? hotel.location.commune === selectedCommune
+        : true;
 
-    const matchesQuartier = selectedQuartier
-      ? hotel.location.quartier === selectedQuartier
-      : true;
+    const matchesQuartier =
+      selectedQuartier && selectedQuartier !== "all"
+        ? hotel.location.quartier === selectedQuartier
+        : true;
 
     let matchesPrice = true;
     if (priceRange === "low") {
@@ -100,7 +102,7 @@ export default function RoomsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 my-16">
       {/* Filtres */}
       <div className="mb-8 space-y-4">
         <div className="flex flex-col md:flex-row gap-4">
@@ -180,14 +182,14 @@ export default function RoomsPage() {
               key={room.id}
               variants={itemVariants}
               onClick={() => handleRoomClick(room.id)}
-              className="cursor-pointer"
+              className="cursor-pointer group"
             >
-              <Card className="h-full overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
                 <div className="relative h-48">
                   <img
                     src={room.images[0]}
                     alt={room.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute top-2 right-2">
                     <Badge
@@ -210,15 +212,20 @@ export default function RoomsPage() {
                     </h3>
                     <div className="flex items-center">
                       <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="ml-1 text-sm">{room.rating}</span>
+                      <span className="ml-1 text-sm font-medium">
+                        {room.rating}
+                      </span>
                     </div>
                   </div>
                   <div className="text-sm text-muted-foreground mb-3">
-                    <div className="flex items-center mb-1">
-                      <MapPin className="h-4 w-4 mr-1" />
-                      {hotel.name} - {hotel.location.quartier}
+                    <div className="flex items-center mb-2">
+                      <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
+                      <span className="line-clamp-1">
+                        {hotel.name} - {hotel.location.quartier},{" "}
+                        {hotel.location.commune}
+                      </span>
                     </div>
-                    <p className="line-clamp-2">{room.description}</p>
+                    <p className="line-clamp-2 text-sm">{room.description}</p>
                   </div>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center">
@@ -236,7 +243,9 @@ export default function RoomsPage() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
-                  <Button className="w-full">Réserver maintenant</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90">
+                    Réserver maintenant
+                  </Button>
                 </CardFooter>
               </Card>
             </motion.div>

@@ -2,18 +2,44 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface SplashScreenProps {
   onComplete: () => void;
 }
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const startTime = Date.now();
+    const duration = 3000;
+
+    const updateProgress = () => {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const newProgress = Math.min((elapsed / duration) * 100, 100);
+
+      if (elapsed >= duration) {
+        onComplete();
+      } else {
+        setProgress(newProgress);
+        requestAnimationFrame(updateProgress);
+      }
+    };
+
+    const animationFrame = requestAnimationFrame(updateProgress);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [onComplete]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onAnimationComplete={onComplete}
       className="fixed inset-0 flex min-h-screen flex-col items-center justify-center bg-primary text-white"
     >
       <div className="relative flex flex-col items-center">

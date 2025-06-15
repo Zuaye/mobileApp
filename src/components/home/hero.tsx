@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "@/src/components/ui/button";
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+
 
 export function Hero() {
   return (
