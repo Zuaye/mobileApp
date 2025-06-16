@@ -25,9 +25,9 @@ export default function LoginPage() {
     <div className="min-h-screen w-full bg-white flex items-stretch md:items-center md:justify-center">
       <div className="w-full md:max-w-md relative bg-white md:rounded-[40px] md:m-4 md:shadow-xl">
         {/* Image de fond avec les feuilles */}
-        <div className="absolute top-0 left-0 right-0 h-[45%] bg-[#f39200]/10 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[35%] bg-[#f39200]/10 overflow-hidden">
           <div
-            className="absolute inset-0 bg-[url('/images/leaves-pattern.jpg')] bg-cover bg-center opacity-80"
+            className="absolute inset-0 bg-[url('/images/hero/hero.jpg')] bg-cover bg-center opacity-80"
             style={{
               filter: "hue-rotate(40deg) saturate(150%)",
             }}
@@ -120,13 +120,6 @@ export default function LoginPage() {
               </div>
 
               <div className="flex items-center justify-between text-base">
-                <label className="flex items-center space-x-2 text-gray-600">
-                  <input
-                    type="checkbox"
-                    className="w-5 h-5 rounded border-gray-300 text-[#f39200]"
-                  />
-                  <span>Se souvenir de moi</span>
-                </label>
                 <Link
                   href="/forgot-password"
                   className="text-[#f39200] hover:text-[#f39200]/80"
@@ -137,7 +130,7 @@ export default function LoginPage() {
 
               <Button
                 type="submit"
-                className="w-full h-14 bg-[#f39200] hover:bg-[#f39200]/90 text-white rounded-2xl font-medium transition-colors text-lg mt-4"
+                className="w-full h-14 bg-[#f39200] hover:bg-[#f39200]/90 text-white rounded-2xl font-medium transition-colors text-lg mt-2"
               >
                 Se connecter
               </Button>
