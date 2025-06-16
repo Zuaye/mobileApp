@@ -80,7 +80,6 @@ export function generateMetadata({
       images: [
         {
           url: ogImageUrl,
-          alt: pageImage.alt,
           width: pageImage.width || 1200,
           height: pageImage.height || 630,
         },
@@ -100,7 +99,6 @@ export function generateMetadata({
       images: [
         {
           url: defaultConfig.images.twitter?.url || ogImageUrl,
-          alt: defaultConfig.images.twitter?.alt || pageImage.alt,
           width: defaultConfig.images.twitter?.width || 1200,
           height: defaultConfig.images.twitter?.height || 675,
         },

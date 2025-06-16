@@ -20,12 +20,13 @@ import {
 } from "lucide-react";
 import { Badge } from "@/src/components/ui/badge";
 
-export default function WomanProfilePage({
+export default async function WomanProfilePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const profile = AVAILABLE_WOMENS.find((w) => w.id === params.id);
+  const resolvedParams = await params;
+  const profile = AVAILABLE_WOMENS.find((w) => w.id === resolvedParams.id);
 
   if (!profile) {
     notFound();
