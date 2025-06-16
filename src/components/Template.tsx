@@ -12,9 +12,10 @@ export function Template({ children }: TemplateProps) {
   const pathname = usePathname();
 
   // Pages where we don't want to show navbar and footer
-  const shouldHideNavAndFooter = ["/auth/login", "/auth/register"].includes(
-    pathname
-  );
+  const shouldHideNavAndFooter = [
+    "/auth/login",
+    "/auth/register/client",
+  ].includes(pathname);
 
   return (
     <>

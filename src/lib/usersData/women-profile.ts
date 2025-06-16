@@ -12,7 +12,6 @@ interface WomanProfile {
   images: string[];
   videos: string[];
   services: string[];
-  instagram?: string;
   whatsapp?: string;
   phone?: string;
 }
@@ -21,23 +20,6 @@ interface WomanProfile {
 export const AVAILABLE_WOMENS: WomanProfile[] = [
   {
     id: "1",
-    name: "Jessica Moke",
-    age: 26,
-    description:
-      "Je suis une jeune femme dynamique et sociable. J'aime les moments de partage et de convivialité. Je suis disponible pour des moments agréables et discrets.",
-    price: 15000,
-    images: ["/images/women/jessica.jpg"],
-    videos: ["/videos/women/jessica/1.mp4", "/videos/women/jessica/2.mp4"],
-    statut: "Maintenant",
-    localisation: "Bandal",
-    languages: ["Français", "Lingala"],
-    rating: 4.5,
-    services: ["Massage", "Accompagnement", "Dîner en ville", "Soirée privée"],
-    instagram: "https://instagram.com/jessica_moke",
-    whatsapp: "+243123456789",
-  },
-  {
-    id: "2",
     name: "Deborah Mande",
     age: 25,
     description:
@@ -55,12 +37,11 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
     languages: ["Français", "Anglais"],
     rating: 4.8,
     services: ["Massage", "Accompagnement", "Week-end", "Événements"],
-    instagram: "https://instagram.com/deborah_mande",
     whatsapp: "+243987654321",
     phone: "+243987654321",
   },
   {
-    id: "3",
+    id: "2",
     name: "Eunice Yenga",
     age: 30,
     description:
@@ -82,5 +63,21 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
     rating: 4.2,
     services: ["Massage", "Accompagnement", "Soirée", "Voyage"],
     whatsapp: "+243456789123",
+  },
+  {
+    id: "3",
+    name: "Jessica Moke",
+    age: 26,
+    description:
+      "Je suis une jeune femme dynamique et sociable. J'aime les moments de partage et de convivialité. Je suis disponible pour des moments agréables et discrets.",
+    price: 15000,
+    images: ["/images/women/jessica.jpg"],
+    videos: ["/videos/women/jessica/1.mp4", "/videos/women/jessica/2.mp4"],
+    statut: "Maintenant",
+    localisation: "Bandal",
+    languages: ["Français", "Lingala"],
+    rating: 4.5,
+    services: ["Massage", "Accompagnement", "Dîner en ville", "Soirée privée"],
+    whatsapp: "+243123456789",
   },
 ];
