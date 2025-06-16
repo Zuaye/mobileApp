@@ -32,13 +32,13 @@ export const seoConfig = {
     authors: [{ name: "Zuaye Teams" }],
     images: {
       og: {
-        url: "/images/openGraph/EcranGraph.jpg",
+        url: "/images/openGraph/EcranGraph.png",
         title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
         width: 1080,
         height: 1080,
       },
       twitter: {
-        url: "/images/openGraph/EcranGraph.jpg",
+        url: "/images/openGraph/EcranGraph.png",
         title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
         width: 1200,
         height: 675,
