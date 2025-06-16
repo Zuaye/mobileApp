@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { AppHeader } from "./navigation/app-header";
 import { MobileNav } from "./navigation/mobile-nav";
+import { DesktopBlocker } from "./DesktopBlocker";
 
 interface TemplateProps {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ interface TemplateProps {
 export function Template({ children }: TemplateProps) {
   const pathname = usePathname();
 
-  // Pages where we don't want to show navbar and footer
+  // Pages où on ne veut pas afficher la navbar et le footer
   const shouldHideNavAndFooter = [
     "/auth/login",
     "/auth/register/client",
@@ -19,6 +20,7 @@ export function Template({ children }: TemplateProps) {
 
   return (
     <>
+      <DesktopBlocker />
       {!shouldHideNavAndFooter && <AppHeader />}
       <main>{children}</main>
       {!shouldHideNavAndFooter && <MobileNav />}
