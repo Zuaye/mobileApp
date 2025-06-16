@@ -6,6 +6,7 @@ import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Clock, Users, Star, MapPin, Bed } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
 import {
   getAvailableRooms,
   formatPrice,
@@ -14,9 +15,28 @@ import {
   type Hotel,
 } from "@/src/lib/usersData/hotelData";
 
+type FilterType = "all" | "standard" | "passage" | "deluxe";
+
 export function AvailableRooms() {
   const router = useRouter();
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const availableRooms = getAvailableRooms();
+
+  // Filtres disponibles
+  const filters: { type: FilterType; label: string }[] = [
+    { type: "all", label: "Tous" },
+    { type: "passage", label: "passage" },
+    { type: "standard", label: "Standard" },
+    { type: "deluxe", label: "Deluxe" },
+  ];
+
+  // Filtrer les chambres en fonction du filtre actif
+  const filteredRooms = useMemo(() => {
+    if (activeFilter === "all") return availableRooms;
+    return availableRooms.filter((room) =>
+      room.type.toLowerCase().includes(activeFilter.toLowerCase())
+    );
+  }, [availableRooms, activeFilter]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -57,6 +77,25 @@ export function AvailableRooms() {
           </p>
         </div>
       </div>
+
+      {/* Système de filtres */}
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-2 hide-scrollbar">
+        {filters.map((filter) => (
+          <Badge
+            key={filter.type}
+            variant={activeFilter === filter.type ? "default" : "outline"}
+            className={`cursor-pointer transition-all ${
+              activeFilter === filter.type
+                ? "bg-primary text-primary-foreground"
+                : "hover:bg-primary/10"
+            }`}
+            onClick={() => setActiveFilter(filter.type)}
+          >
+            {filter.label}
+          </Badge>
+        ))}
+      </div>
+
       <div className="relative">
         <motion.div
           variants={containerVariants}
@@ -64,7 +103,7 @@ export function AvailableRooms() {
           animate="visible"
           className="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory hide-scrollbar"
         >
-          {availableRooms.map((room: Room) => {
+          {filteredRooms.map((room: Room) => {
             const hotel = HOTELS.find((h: Hotel) => h.rooms.includes(room));
             if (!hotel) return null;
 
@@ -140,7 +179,7 @@ export function AvailableRooms() {
         {/* Indicateur de défilement et bouton Voir tout */}
         <div className="flex items-center justify-between mt-4">
           <div className="flex gap-1">
-            {availableRooms.map((_, index) => (
+            {filteredRooms.map((_, index) => (
               <div key={index} className="w-1 h-1 rounded-full bg-primary/20" />
             ))}
           </div>

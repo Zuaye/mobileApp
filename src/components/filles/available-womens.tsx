@@ -51,7 +51,7 @@ export function AvailableWomens() {
             className="flex items-center gap-2 hover:bg-primary/10 mt-5"
             onClick={handleSeeAll}
           >
-            Voir tous les profils
+            Voir toutes les filles
             <ChevronRight className="w-4 h-4" />
           </Button>
         </div>

@@ -54,7 +54,7 @@ export const AVAILABLE_ROOMS: Room[] = [
   {
     id: "vip-pullman-1",
     title: "Suite Présidentielle Pullman",
-    type: "VIP",
+    type: "deluxe",
     price: 350000,
     priceUnit: "CDF",
     size: "65m²",
