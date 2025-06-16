@@ -38,12 +38,12 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 block md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 block md:hidden ">
       {/* Effet de flou derrière la barre */}
       <div className="absolute inset-0 bg-background/80 backdrop-blur-lg" />
 
       {/* Barre de navigation */}
-      <div className="relative border-t border-border">
+      <div className="relative border-t border-border rounded-tr-3xl rounded-tl-3xl">
         <div className="flex items-center justify-around h-16 px-4">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
