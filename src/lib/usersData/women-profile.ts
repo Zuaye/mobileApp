@@ -26,12 +26,7 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
     description:
       "Je suis une jeune femme dynamique et sociable. J'aime les moments de partage et de convivialité. Je suis disponible pour des moments agréables et discrets.",
     price: 15000,
-    images: [
-      "/images/women/jessica.jpg",
-      "/images/women/jessica/2.jpg",
-      "/images/women/jessica/3.jpg",
-      "/images/women/jessica/4.jpg",
-    ],
+    images: ["/images/women/jessica.jpg"],
     videos: ["/videos/women/jessica/1.mp4", "/videos/women/jessica/2.mp4"],
     statut: "Maintenant",
     localisation: "Bandal",
