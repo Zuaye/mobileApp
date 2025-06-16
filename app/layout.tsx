@@ -1,27 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { OnboardingProvider } from "@/src/components/providers/onboarding-provider";
 import { cn } from "@/src/lib/utils";
 import { Toaster } from "@/src/components/ui/sonner";
 import { Template } from "@/src/components/Template";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/src/components/ThemeComponents/theme-provider";
+import { generateMetadata } from "@/src/lib/seo/generateMetadata";
 
-const inter = Inter({ subsets: ["latin"] });
+export const metadata = generateMetadata({});
 
-export const metadata: Metadata = {
-  title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
-  description:
-    "Plateforme de réservation de chambres d'hôtel à l'heure. Trouvez rapidement une chambre confortable pour vos moments privés.",
-  manifest: "/manifest.json",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
-  themeColor: "#000000",
-};
+const myFont = localFont({
+  src: "./fonts/NexaRegular.ttf",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -32,8 +23,8 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.className
+          "min-h-screen bg-backgroundfont-sans antialiased",
+          myFont.className
         )}
       >
         <ThemeProvider

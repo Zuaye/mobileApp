@@ -1,20 +1,27 @@
 export const seoConfig = {
   default: {
-    title: "Domicon - Plateforme Immobilière",
+    title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
     description:
-      "Découvrez Domicon, votre partenaire immobilier de confiance en République Démocratique du Congo. Achetez, vendez ou louez des biens immobiliers de qualité.",
-    url: "https://domicon.com",
-    siteName: "Domicon",
+      "Plateforme de réservation de chambres d'hôtel à l'heure. Trouvez rapidement une chambre confortable pour vos moments privés.",
+    url: "https://zuaye.netlify.app",
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+      maximumScale: 1,
+      userScalable: false,
+    },
+    themeColor: "#000000",
+    siteName: "Zuaye",
     type: "website" as const,
     keywords: [
-      "immobilier RDC",
-      "propriétés à vendre",
-      "location immobilière",
-      "biens immobiliers Congo",
-      "maisons à vendre",
-      "appartements à louer",
-      "agence immobilière RDC",
-      "investissement immobilier",
+      "Chambre à louer",
+      "Chambre",
+      "Filles",
+      "Reservation",
+      "Kinshasa",
+      "Espace à vivre",
+      "Hotel RDC",
+      "Hotel",
     ],
     locale: "fr_FR",
     icons: {
@@ -22,25 +29,25 @@ export const seoConfig = {
       // apple: "/apple-icon.png",
       shortcut: "/images/favicon.png",
     },
-    authors: [{ name: "Domicon Immobilier" }],
+    authors: [{ name: "Zuaye Teams" }],
     images: {
       og: {
         url: "/images/openGraph/EcranGraph.jpg",
-        alt: "Domicon - Plateforme Immobilière",
+        title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
         width: 1080,
         height: 1080,
       },
       twitter: {
         url: "/images/openGraph/EcranGraph.jpg",
-        alt: "Domicon - Plateforme Immobilière",
+        title: "Zuaye - Réservation de Chambres d'Hôtel à l'Heure",
         width: 1200,
         height: 675,
       },
     },
     twitter: {
       card: "summary_large_image",
-      site: "@domicon_rdc",
-      creator: "@domicon_rdc",
+      site: "@zuaye_rdc",
+      creator: "@zuaye_rdc",
     },
     robots: {
       index: true,
@@ -54,6 +61,6 @@ export const seoConfig = {
       },
     },
 
-    category: "Real Estate",
+    category: "Reservation chamber",
   },
 };

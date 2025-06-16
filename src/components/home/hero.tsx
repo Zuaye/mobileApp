@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-
 export function Hero() {
   return (
     <div className="relative w-full min-h-[30vh] flex items-center justify-center">
