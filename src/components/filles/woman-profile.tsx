@@ -59,7 +59,7 @@ export function WomanProfile({ profile }: WomanProfileProps) {
   return (
     <div className="bg-slate-50 dark:bg-slate-900 mt-16">
       {/* Image carousel */}
-      <div className="relative h-[70vh] md:h-[60vh]">
+      <div className="relative h-[60vh] md:h-[70vh]">
         <Button
           variant="ghost"
           className="absolute top-4 left-4 z-10 bg-black/20 hover:bg-black/40 text-white rounded-full p-2"
