@@ -19,7 +19,6 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { Badge } from "@/src/components/ui/badge";
-import Image from "next/image";
 
 export default function WomanProfilePage({
   params,

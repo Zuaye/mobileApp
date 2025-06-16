@@ -8,9 +8,7 @@ import {
   Building2,
   Users,
   CreditCard,
-  Settings,
   UserCircle,
-  MessageSquare,
   Home,
   ChevronLeft,
   ChevronRight,
@@ -22,8 +20,6 @@ const navigationItems = [
   { name: "Femmes", href: "/admin/women", icon: UserCircle },
   { name: "Utilisateurs", href: "/admin/users", icon: Users },
   { name: "Paiements", href: "/admin/payments", icon: CreditCard },
-  { name: "Messages", href: "/admin/messages", icon: MessageSquare },
-  { name: "Paramètres", href: "/admin/settings", icon: Settings },
 ];
 
 export default function AdminSidebar() {

@@ -5,7 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/src/components/ui/button";
 import { Badge } from "@/src/components/ui/badge";
-import { Clock, MapPin, Star, Wifi, Coffee, Users } from "lucide-react";
+import {
+  Clock,
+  MapPin,
+  Star,
+  Wifi,
+  Coffee,
+  Users,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import {
   Room,
@@ -36,6 +45,21 @@ interface StatusDetailModalProps {
 
 function StatusDetailModal({ room, onClose }: StatusDetailModalProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? room.images.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === room.images.length - 1 ? 0 : prev + 1
+    );
+  };
 
   const getStatusBadgeStyle = (status: RoomWithStatus["status"]) => {
     switch (status) {
@@ -78,7 +102,7 @@ function StatusDetailModal({ room, onClose }: StatusDetailModalProps) {
       <div
         className={cn(
           "relative w-full h-full overflow-hidden cursor-pointer",
-          "bg-gradient-to-b from-transparent to-black/50"
+          "bg-gradient-to-b from-transparent to-black/50 backdrop-blur-sm"
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -86,7 +110,7 @@ function StatusDetailModal({ room, onClose }: StatusDetailModalProps) {
         {/* Image de fond avec effet de zoom */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src={room.images[0]}
+            src={room.images[currentImageIndex]}
             alt={room.title}
             fill
             className={cn(
@@ -96,6 +120,20 @@ function StatusDetailModal({ room, onClose }: StatusDetailModalProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
         </div>
+
+        {/* Boutons de navigation */}
+        <button
+          onClick={handlePrevImage}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/20 hover:bg-white/20 transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={handleNextImage}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/20 hover:bg-white/20 transition-colors"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
 
         {/* Badge de statut */}
         <div className="absolute top-8 left-8 z-10">
@@ -197,7 +235,7 @@ export function RoomStatus() {
 
   return (
     <>
-      <section className="py-2 bg-white">
+      <section className="py-2">
         <div className="container mx-auto px-4">
           <div className="flex gap-1 pb-3 mt-1">
             {rooms.map((room) => (
