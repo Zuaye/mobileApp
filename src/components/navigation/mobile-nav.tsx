@@ -14,7 +14,7 @@ const navItems = [
   },
   {
     name: "Recherche",
-    href: "/search",
+    href: "/rooms",
     icon: Search,
   },
   {
