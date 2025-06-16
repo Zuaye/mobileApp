@@ -53,13 +53,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           }}
           className="mb-4"
         >
-          <Image
-            src="images/logo/zuaye.svg"
-            alt="Zuaye Logo"
-            width={120}
-            height={120}
-            className="rounded-2xl"
-          />
+          c
         </motion.div>
 
         {/* Text animation */}

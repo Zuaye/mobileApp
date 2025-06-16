@@ -6,17 +6,23 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/src/components/ui/avatar";
+import Image from "next/image";
 
 export function AppHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 z-50 border-b backdrop-blur-md">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between px-4 h-16">
+        <div className="flex items-center justify-between px-4 h-14">
           {/* Logo et description */}
-          <div className="flex flex-col">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center gap-x-3">
+            <div className="flex items-center justify-center gap-3">
               <Link href="/" className="flex items-center">
-                <span className="text-xl font-bold text-primary">Zuaye</span>
+                <Image
+                  src="/images/logo/zuaye.png"
+                  alt="Zuaye"
+                  width={30}
+                  height={30}
+                />
               </Link>
             </div>
             <span className="text-[10px] text-slate-500 dark:text-slate-400">
