@@ -16,11 +16,15 @@ export function Template({ children }: TemplateProps) {
   const shouldHideNavAndFooter = [
     "/auth/login",
     "/auth/register/client",
+    "/admin",
   ].includes(pathname);
+
+  // Vérifie si on est sur une page d'administration
+  const isAdminPage = pathname.startsWith("/admin");
 
   return (
     <>
-      <DesktopBlocker />
+      {!isAdminPage && <DesktopBlocker />}
       {!shouldHideNavAndFooter && <AppHeader />}
       <main>{children}</main>
       {!shouldHideNavAndFooter && <MobileNav />}
