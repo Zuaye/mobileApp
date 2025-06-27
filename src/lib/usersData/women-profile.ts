@@ -27,9 +27,9 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
     price: 12000,
     images: [
       "/images/women/deborah.jpg",
+      "/images/women/deborah1.jpg",
       "/images/women/deborah2.jpg",
       "/images/women/deborah3.jpg",
-      "/images/women/deborah4.jpg",
     ],
     videos: ["/videos/women/deborah/1.mp4"],
     statut: "Dans 30min",
@@ -43,7 +43,7 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
   {
     id: "2",
     name: "Eunice Yenga",
-    age: 30,
+    age: 28,
     description:
       "Charmante et attentionnée, je vous propose des moments de détente et de plaisir. Je suis une personne douce et à l'écoute, qui saura vous mettre à l'aise.",
     price: 18000,
@@ -51,6 +51,8 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
       "/images/women/eunice.jpg",
       "/images/women/eunice1.jpg",
       "/images/women/eunice2.jpg",
+      "/images/women/eunice3.jpg",
+      "/images/women/eunice4.jpg",
     ],
     videos: [
       "/videos/women/eunice/1.mp4",
@@ -71,7 +73,13 @@ export const AVAILABLE_WOMENS: WomanProfile[] = [
     description:
       "Je suis une jeune femme dynamique et sociable. J'aime les moments de partage et de convivialité. Je suis disponible pour des moments agréables et discrets.",
     price: 15000,
-    images: ["/images/women/jessica.jpg"],
+    images: [
+      "/images/women/jessica.jpg",
+      "/images/women/jessica1.jpg",
+      "/images/women/jessica2.jpg",
+      "/images/women/jessica3.jpg",
+      "/images/women/jessica4.jpg",
+    ],
     videos: ["/videos/women/jessica/1.mp4", "/videos/women/jessica/2.mp4"],
     statut: "Maintenant",
     localisation: "Bandal",

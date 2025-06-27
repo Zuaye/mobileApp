@@ -63,10 +63,6 @@ export const ProfileCard = ({ profile, onProfileClick }: ProfileCardProps) => {
               <h3 className="text-xl font-semibold">{profile.name}</h3>
               <p className="text-sm text-gray-300">{profile.age} ans</p>
             </div>
-            <div className="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="font-medium">{profile.rating}</span>
-            </div>
           </div>
 
           {/* Informations de localisation et prix */}
@@ -75,9 +71,10 @@ export const ProfileCard = ({ profile, onProfileClick }: ProfileCardProps) => {
               <MapPin className="w-4 h-4" />
               <span className="text-gray-200">{profile.localisation}</span>
             </div>
-            <span className="text-primary-foreground font-semibold">
-              {profile.price.toLocaleString()} FC
-            </span>
+            <div className="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm">
+              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-medium">{profile.rating}</span>
+            </div>
           </div>
 
           {/* Langues */}

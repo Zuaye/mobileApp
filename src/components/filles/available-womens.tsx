@@ -39,10 +39,12 @@ export function AvailableWomens() {
         <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between">
           <div className="space-y-1">
             <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent">
-              Filles de chambres
+              Faites-vous accompagner sans engagement
             </h2>
             <p className="text-muted-foreground">
-              Trouvez un partenaire pour un moment de plaisir
+              Connectez-vous aux femmes libres et ouvertes d’esprit de Kinshasa,
+              prêtes à partager des moments de plaisir, de détente et de
+              liberté.
             </p>
           </div>
 
@@ -51,7 +53,7 @@ export function AvailableWomens() {
             className="flex items-center gap-2 hover:bg-primary/10 mt-5"
             onClick={handleSeeAll}
           >
-            Voir toutes les filles
+            Voir toutes les femmes
             <ChevronRight className="w-4 h-4" />
           </Button>
         </div>

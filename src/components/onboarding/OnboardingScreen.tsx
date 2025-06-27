@@ -25,10 +25,10 @@ const slides = [
   },
   {
     id: 3,
-    title: "Nos filles",
+    title: "Accompagnement",
     description:
-      "Profitez de nos filles de chambres disponibles issues de plusieurs communes pour vous faire plaisir.",
-    image: "/images/onboarding/women.jpg",
+      " Connectez-vous aux femmes libres et ouvertes d’esprit de Kinshasa,prêtes à partager des moments de plaisir, de détente et deliberté.",
+    image: "/images/women/jessica2.jpg",
     buttonText: "Suivant",
   },
   {
