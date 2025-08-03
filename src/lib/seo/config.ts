@@ -10,7 +10,7 @@ export const seoConfig = {
       maximumScale: 1,
       userScalable: false,
     },
-    themeColor: "#000000",
+    themeColor: "#f97316",
     siteName: "Zuaye",
     type: "website" as const,
     keywords: [
@@ -60,7 +60,23 @@ export const seoConfig = {
         "max-snippet": -1,
       },
     },
-
     category: "Reservation chamber",
+
+    // PWA Configuration
+    pwa: {
+      manifest: "/manifest.json",
+      appleWebApp: {
+        capable: true,
+        statusBarStyle: "default" as const,
+        title: "Zuaye",
+      },
+      other: {
+        "mobile-web-app-capable": "yes",
+        "apple-mobile-web-app-capable": "yes",
+        "apple-mobile-web-app-status-bar-style": "default",
+        "apple-mobile-web-app-title": "Zuaye",
+        "msapplication-TileColor": "#f97316",
+      },
+    },
   },
 };

@@ -69,6 +69,13 @@ export function generateMetadata({
       shortcut: defaultConfig.icons.shortcut,
     },
 
+    // PWA metadata - using config values
+    manifest: defaultConfig.pwa.manifest,
+    themeColor: defaultConfig.themeColor,
+    appleWebApp: defaultConfig.pwa.appleWebApp,
+    viewport: defaultConfig.viewport,
+    other: defaultConfig.pwa.other,
+
     // OpenGraph metadata
     openGraph: {
       type: pageType,

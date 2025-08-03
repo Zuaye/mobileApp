@@ -7,25 +7,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/src/components/ThemeComponents/theme-provider";
 import { generateMetadata } from "@/src/lib/seo/generateMetadata";
 
-export const metadata = {
-  ...generateMetadata({}),
-  manifest: "/manifest.json",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f97316" },
-    { media: "(prefers-color-scheme: dark)", color: "#f97316" },
-  ],
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Zuaye",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    themeColor: "#f97316",
-  },
-};
+export const metadata = generateMetadata({});
 
 const myFont = localFont({
   src: "./fonts/NexaRegular.ttf",
