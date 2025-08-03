@@ -1,0 +1,63 @@
+{
+  "name": "Zuaye",
+  "short_name": "Zuaye",
+  "description": "Application de réservation d'hôtels et de rencontres",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f97316",
+  "theme_color": "#f97316",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "categories": ["lifestyle", "travel", "social"],
+  "icons": [
+    {
+      "src": "/images/logo/zuaye.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo/zuaye.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Rechercher des hôtels",
+      "short_name": "Hôtels",
+      "description": "Trouver et réserver des hôtels",
+      "url": "/rooms",
+      "icons": [
+        {
+          "src": "/images/logo/zuaye.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Rencontrer des femmes",
+      "short_name": "Femmes",
+      "description": "Découvrir des profils de femmes",
+      "url": "/women",
+      "icons": [
+        {
+          "src": "/images/logo/zuaye.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "short_name": "Messages",
+      "description": "Voir vos conversations",
+      "url": "/messages",
+      "icons": [
+        {
+          "src": "/images/logo/zuaye.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

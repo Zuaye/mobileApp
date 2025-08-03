@@ -40,7 +40,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex min-h-screen flex-col items-center justify-center bg-primary text-white"
+      className="fixed inset-0 flex min-h-screen flex-col items-center justify-center bg-white dark:bg-slate-900 text-black dark:text-white"
     >
       <div className="relative flex flex-col items-center">
         {/* Logo animation */}
@@ -53,7 +53,13 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           }}
           className="mb-4"
         >
-          c
+          <Image
+            src="/images/logo/zuaye.png"
+            alt="Zuaye"
+            width={100}
+            height={100}
+            className="w-20 h-20"
+          />
         </motion.div>
 
         {/* Text animation */}
@@ -78,7 +84,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           transition={{ delay: 0.6 }}
           className="absolute -bottom-16"
         >
-          <div className="w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 dark:border-white/30 border-black/30 border-t-black dark:border-t-white rounded-full animate-spin" />
         </motion.div>
       </div>
     </motion.div>
