@@ -58,7 +58,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             alt="Zuaye"
             width={100}
             height={100}
-            className="w-20 h-20"
+            className="w-16 h-16 sm:w-24 sm:h-24"
           />
         </motion.div>
 
@@ -73,8 +73,10 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           }}
           className="text-center"
         >
-          <h1 className="text-4xl font-bold mb-2">Zuaye</h1>
-          <p className="text-lg opacity-90">Votre confort, notre priorité</p>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-2">Zuaye</h1>
+          <p className="text-sm sm:text-xl opacity-90">
+            Votre confort, notre priorité
+          </p>
         </motion.div>
 
         {/* Loading indicator */}

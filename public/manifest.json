@@ -10,6 +10,7 @@
   "scope": "/",
   "lang": "fr",
   "categories": ["lifestyle", "travel", "social"],
+  "splash": null,
   "icons": [
     {
       "src": "/images/logo/zuaye.png",

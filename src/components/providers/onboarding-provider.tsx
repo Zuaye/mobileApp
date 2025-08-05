@@ -20,7 +20,9 @@ export function OnboardingProvider({
 
   useEffect(() => {
     // Vérifie si l'onboarding a déjà été complété
-    const onboardingCompleted = localStorage.getItem("zuaye_onboarding");
+    const onboardingCompleted = sessionStorage.getItem(
+      "zuaye_onboarding_completed"
+    );
     if (onboardingCompleted === "true") {
       setShowOnboarding(false);
       setIsOnboardingComplete(true);
@@ -28,6 +30,7 @@ export function OnboardingProvider({
   }, []);
 
   const completeOnboarding = () => {
+    sessionStorage.setItem("zuaye_onboarding_completed", "true");
     setShowOnboarding(false);
     setIsOnboardingComplete(true);
   };

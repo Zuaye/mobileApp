@@ -7,7 +7,7 @@ export function useOnboardingStatus() {
   useEffect(() => {
     // Vérifie le statut de l'onboarding au chargement
     const checkOnboardingStatus = () => {
-      const status = localStorage.getItem("zuaye_onboarding_completed");
+      const status = sessionStorage.getItem("zuaye_onboarding_completed");
       setHasCompletedOnboarding(status === "true");
       setIsLoading(false);
     };
@@ -16,12 +16,12 @@ export function useOnboardingStatus() {
   }, []);
 
   const completeOnboarding = () => {
-    localStorage.setItem("zuaye_onboarding", "true");
+    sessionStorage.setItem("zuaye_onboarding_completed", "true");
     setHasCompletedOnboarding(true);
   };
 
   const resetOnboarding = () => {
-    localStorage.removeItem("zuaye_onboarding");
+    sessionStorage.removeItem("zuaye_onboarding_completed");
     setHasCompletedOnboarding(false);
   };
 
